@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "30e9895f-238f-41e9-96fd-51f0fa34f9ae",
+		"name": "trello_2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"let jsonData = pm.response.json();\r",
+							"pm.globals.set(\"tid\", jsonData.id);\r",
+							"console.log (jsonData.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://api.trello.com/1/boards/?name={{name}}&key={{tkey}}&token={{ttoken}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"boards",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "{{name}}"
+						},
+						{
+							"key": "key",
+							"value": "{{tkey}}"
+						},
+						{
+							"key": "token",
+							"value": "{{ttoken}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.trello.com/1/boards/{{tid}}?key={{tkey}}&token={{ttoken}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"boards",
+						"{{tid}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{tkey}}"
+						},
+						{
+							"key": "token",
+							"value": "{{ttoken}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://api.trello.com/1/boards/{{tid}}?key={{tkey}}&token={{ttoken}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"trello",
+						"com"
+					],
+					"path": [
+						"1",
+						"boards",
+						"{{tid}}"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{tkey}}"
+						},
+						{
+							"key": "token",
+							"value": "{{ttoken}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
